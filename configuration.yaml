@@ -1,0 +1,7 @@
+# The address of the server to download requests from.
+#
+# @see (https://pika.readthedocs.org/en/0.9.13/modules/parameters.html)
+amqp_server: address-of-my-amqp-server
+
+# The queue name to pull data from.
+queue_name: my-processing-queue
