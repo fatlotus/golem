@@ -2,7 +2,7 @@ from pika import BlockingConnection, ConnectionParameters
 import types
 import marshal
 
-class GolemRunner(object):
+class HunterRunner(object):
   def __init__(self, amqp_server, queue_name):
     self.parameters = ConnectionParameters(amqp_server)
     self.queue_name = queue_name

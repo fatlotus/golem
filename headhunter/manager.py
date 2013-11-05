@@ -3,7 +3,7 @@ import sys
 import yaml
 import marshal
 
-class GolemManager(object):
+class HunterManager(object):
   def __init__(self, amqp_server, queue_name):
     self.parameters = ConnectionParameters(amqp_server)
     self.queue_name = queue_name
@@ -29,5 +29,5 @@ if __name__ == '__main__':
   
   config_file = os.path.join(os.path.dirname(os.path.dirname(
     os.path.abspath(__file__, 'configuration.yaml' ))))
-  sys.exit(GolemRunner(**yaml.load(open(config_file))).
+  sys.exit(HunterManager(**yaml.load(open(config_file))).
     enqueue(hello_world_function))
