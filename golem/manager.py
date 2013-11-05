@@ -23,13 +23,11 @@ class GolemManager(object):
       body = request
     )
 
-def send_function(func):
-  pass
-
 if __name__ == '__main__':
   def hello_world_function():
     print "Hello, world!"
   
-  sys.exit(GolemManager(
-    **yaml.load(open('configuration.yaml'))
-  ).enqueue(hello_world_function))
+  config_file = os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__, 'configuration.yaml' ))))
+  sys.exit(GolemRunner(**yaml.load(open(config_file))).
+    enqueue(hello_world_function))

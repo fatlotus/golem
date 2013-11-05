@@ -3,8 +3,8 @@ import sys
 import yaml
 
 try:
-  sys.exit(GolemRunner(
-    **yaml.load(open('configuration.yaml'))
-  ).run(*sys.argv))
+  config_file = os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__, 'configuration.yaml' ))))
+  sys.exit(GolemRunner(**yaml.load(open(config_file))).run(*sys.argv))
 except KeyboardInterrupt:
   sys.exit(0)
