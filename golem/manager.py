@@ -11,7 +11,8 @@ class GolemManager(object):
     self.connection = BlockingConnection(self.parameters)
     self.channel = self.connection.channel()
     
-    self.channel.queue_declare(self.queue_name)
+    self.channel.queue_declare(self.queue_name,
+      durable = True)
     
   def enqueue(self, function):
     request = marshal.dumps(function.func_code)

@@ -21,7 +21,7 @@ class GolemRunner(object):
     channel = connection.channel()
     
     try:
-      channel.queue_declare(self.queue_name)
+      channel.queue_declare(self.queue_name, durable = True)
       
       channel.basic_consume(self.process, queue = self.queue_name)
       channel.start_consuming()
