@@ -2,6 +2,7 @@ from pika import BlockingConnection, ConnectionParameters
 import sys
 import yaml
 import marshal
+import os
 
 class HunterManager(object):
   def __init__(self, amqp_server, queue_name):
@@ -28,6 +29,6 @@ if __name__ == '__main__':
     print "Hello, world!"
   
   config_file = os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__, 'configuration.yaml' ))))
+    os.path.abspath(__file__))), 'configuration.yaml')
   sys.exit(HunterManager(**yaml.load(open(config_file))).
     enqueue(hello_world_function))
