@@ -1,18 +1,20 @@
 #### Headhunter.d: Distributed Job Scheduling in 100 Lines
 
-This project implements both ends of a lightweight job scheduling library for Python. To use, place the code (the `golem` directory) and the `configuration.yaml` file in the same directory. What happens next is implementation-dependent, but I've provided a sample upstart configuration job for Debian-based systems.
+This project implements both ends of a lightweight job scheduling library for
+Python (enqueueing and processing of requests).
 
 To install on a current Ubuntu AMI:
 
 ```
-$ sudo apt-get install python python-setuptools git
+$ sudo apt-get install python python-setuptools git && sudo easy_install pip
    ...
-$ git clone https://www.github.com/fatlotus/headhunter.d.git
-$ mv golem /usr/lib/python2.7/headhunter
-$ cp /usr/lib/python2.7/headhunter/upstart_job /etc/init/headhunter.conf
+$ sudo pip install headhunter
+$ sudo tee /etc/headhunter.yaml
+amqp_server: $SERVER_IP
+queue_name: $QUEUE_NAME
+^D
+$
 ```
-
-Next, configure the Golem instance by editing `/usr/lib/python2.7/golem/configuration.yaml` --- you will need to change the AMQP server IP address as given in the file.
 
 ##### License
 

@@ -28,7 +28,5 @@ if __name__ == '__main__':
   def hello_world_function():
     print "Hello, world!"
   
-  config_file = os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))), 'configuration.yaml')
-  sys.exit(HunterManager(**yaml.load(open(config_file))).
+  sys.exit(HunterManager(**yaml.load(open('/etc/headhunter.yaml'))).
     enqueue(hello_world_function))
