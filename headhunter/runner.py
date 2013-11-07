@@ -16,7 +16,7 @@ class HunterRunner(object):
     
     channel.basic_ack(delivery_tag = method.delivery_tag)
   
-  def run(self, *argv):
+  def run(self):
     connection = BlockingConnection(self.parameters)
     channel = connection.channel()
     
