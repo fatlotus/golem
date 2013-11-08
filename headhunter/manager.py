@@ -2,6 +2,7 @@ from pika import BlockingConnection, ConnectionParameters
 import sys
 import yaml
 import marshal
+import pickle
 import os
 
 class HunterManager(object):
@@ -16,12 +17,18 @@ class HunterManager(object):
       durable = True)
     
   def enqueue(self, function):
+    if function.func_closure:
+      closure = [x.cell_contents for x in function.func_closure]
+    else:
+      closure = []
+    
     request = marshal.dumps(function.func_code)
+    packet = pickle.dumps((closure, request))
     
     self.channel.basic_publish(
       exchange = '',
       routing_key = self.queue_name,
-      body = request
+      body = packet
     )
 
 if __name__ == '__main__':
