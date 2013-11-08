@@ -11,6 +11,9 @@ def test_integration():
   def function_b():
     raise Exception("worksb")
   
+  def function_c():
+    raise Exception("worksc")
+  
   manager = HunterManager(**config)
   manager.enqueue(function_a)
   manager.enqueue(function_b)
@@ -26,3 +29,10 @@ def test_integration():
     runner.run()
   except Exception, e:
     assert str(e) == "worksb"
+  
+  manager.enqueue(function_c)
+  
+  try:
+    runner.run()
+  except Exception, e:
+    assert str(e) == "worksc"
