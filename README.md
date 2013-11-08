@@ -1,5 +1,7 @@
 #### Headhunter.d: Distributed Job Scheduling in 100 Lines
 
+[![Build Status](https://travis-ci.org/fatlotus/headhunter.d.png?branch=master)](https://travis-ci.org/fatlotus/headhunter.d)
+
 This project implements both ends of a lightweight job scheduling library for
 Python (enqueueing and processing of requests).
 
