@@ -1,4 +1,4 @@
-from pika import BlockingConnection, ConnectionParameters
+from pika import BlockingConnection, ConnectionParameters, exceptions
 import types
 import pickle
 import marshal
@@ -7,9 +7,6 @@ import traceback
 def _make_cell(value):
   def inner(): return value
   return inner.func_closure[0]
-
-class RunnerClosed(Exception):
-  pass
 
 class HunterRunner(object):
   def __init__(self, amqp_server, queue_name):
@@ -42,8 +39,9 @@ class HunterRunner(object):
     
     try:
       self.channel.queue_declare(self.queue_name, durable = True)
-      
       self.channel.basic_consume(self.process, queue = self.queue_name)
+    except exceptions.ConnectionClosed:
+      pass
     finally:
       if not self.connection.is_closed:
         self.connection.close()
