@@ -33,7 +33,7 @@ class HunterManager(object):
 
 if __name__ == '__main__':
   def hello_world_function():
-    print "Hello, world!"
+    print("Hello, world!")
   
   sys.exit(HunterManager(**yaml.load(open('/etc/headhunter.yaml'))).
     enqueue(hello_world_function))

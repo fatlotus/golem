@@ -31,7 +31,7 @@ class HunterRunner(object):
                              globals(), '<network>', closure = closure)
       
       generated_function()
-    except Exception:
+    except:
       traceback.print_exc()
     finally:
       channel.basic_ack(delivery_tag = method.delivery_tag)
